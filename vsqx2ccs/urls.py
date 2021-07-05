@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from vsfc.views import *
 from vsqx2ccs import settings
+from vsqx2ccs.settings import MEDIA_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', test),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+]
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT) + static(settings.MEDIA_URL,
+                                                                    document_root=settings.MEDIA_ROOT)
