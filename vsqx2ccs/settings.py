@@ -30,7 +30,7 @@ SECRET_KEY = get_from_json(json_path, 'SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['noelvalnet.pythonanywhere.com', ]
 
 
 # Application definition
