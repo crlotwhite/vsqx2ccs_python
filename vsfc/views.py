@@ -61,14 +61,14 @@ def test(request):
             translated_strings = {
                 'sub_title': '체비오 사용자를 위한 파일 변환기',
                 'convert': '변환 하기',
-                'just_convert': '그대도 변환하기',
+                'just_convert': '그대로 변환하기',
                 'auto_hiragana': '히라가나로 변환하기',
             }
         else:
             translated_strings = {
                 'sub_title': '체비오 사용자를 위한 파일 변환기',
                 'convert': '변환 하기',
-                'just_convert': '그대도 변환하기',
+                'just_convert': '그대로 변환하기',
                 'auto_hiragana': '히라가나로 변환하기',
             }
         return render(request, 'index.html', translated_strings)
