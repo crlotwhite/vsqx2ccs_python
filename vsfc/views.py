@@ -24,8 +24,10 @@ def test(request):
             xml_string = request.FILES['vocal_sequence_file'].read().decode("utf-8")
             tree = get_xml_tree(xml_string)
             file_name = request.COOKIES['csrftoken'] + '^' + request.FILES['vocal_sequence_file'].name
+            is_hiragana = bool(int(request.POST.get('is_hiragana')))
+
             # process file
-            from_vsqx3(file_name, tree, True)
+            from_vsqx3(file_name, tree, is_hiragana)
 
             # post process; make file name, path
             save_file_name = file_name.split('.')[0] + '.ccs'
@@ -34,7 +36,7 @@ def test(request):
 
             # make HttpResponse
             response = HttpResponse(
-                open(save_file_path, 'r'), content_type=mime_type
+                open(save_file_path, 'r', encoding='utf-8'), content_type=mime_type
             )
             response['Content-Disposition'] = f'attachment; filename={save_file_name.split("^")[1]}'
             os.remove(save_file_path)
@@ -45,21 +47,29 @@ def test(request):
             translated_strings = {
                 'sub_title': 'File converter for Cevio users',
                 'convert': 'Convert',
+                'just_convert': 'Just Convert',
+                'auto_hiragana': 'Change to Hiragana',
             }
         elif language == 'jp':
             translated_strings = {
                 'sub_title': 'Cevioユーザーのためのファイルコンバータ',
                 'convert': 'ファイルを変換する',
+                'just_convert': '変換するだけ',
+                'auto_hiragana': 'ひらがなに変更',
             }
         elif language == 'kr':
             translated_strings = {
                 'sub_title': '체비오 사용자를 위한 파일 변환기',
                 'convert': '변환 하기',
+                'just_convert': '그래도 변환하기',
+                'auto_hiragana': '히라가나로 변환하기',
             }
         else:
             translated_strings = {
                 'sub_title': '체비오 사용자를 위한 파일 변환기',
                 'convert': '변환 하기',
+                'just_convert': '그래도 변환하기',
+                'auto_hiragana': '히라가나로 변환하기',
             }
         return render(request, 'index.html', translated_strings)
 

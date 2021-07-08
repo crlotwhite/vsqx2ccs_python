@@ -53,7 +53,14 @@
             <div class="container py-2 d-grid gap-2">
                 <form method="POST" action="/" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input class="form-control form-control-lg" id="formFileLg" type="file" name="vocal_sequence_file" accept=".vsqx"/>
+                    <div class="d-flex">
+                        <input class="form-control form-control-lg" id="formFileLg" type="file" name="vocal_sequence_file" accept=".vsqx"/>
+                        <select name="is_hiragana" class="form-select" style="width: 30%" aria-label="Default select example">
+                          <option value="0" selected>{{ just_convert }}</option>
+                          <option value="1">{{ auto_hiragana }}</option>
+                        </select>
+                    </div>
+
                     <button type="submit" id="fileSubmit" class="btn btn-primary mb-3 px-5 py-2 my-3" disabled>
                         <span class="h2">{{ convert }}</span>
                     </button>

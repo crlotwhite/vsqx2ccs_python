@@ -115,10 +115,9 @@ def from_vsqx3(file_name: str, tree, is_hiragana) -> bool:
                                 elif tag_checker(note_information, 'noteNum'):
                                     note_data.note_number = note_information.text
                                 elif tag_checker(note_information, 'lyric'):
-                                    # from romkan import to_hiragana
-                                    # lyric = note_information.text
-                                    # note_data.lyric = to_hiragana(lyric) if is_hiragana else lyric
-                                    note_data.lyric = note_information.text
+                                    from romkan import to_hiragana
+                                    lyric = note_information.text
+                                    note_data.lyric = to_hiragana(lyric) if is_hiragana else lyric
 
                             note_list.append(note_data)
 
