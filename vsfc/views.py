@@ -8,7 +8,7 @@ from django.shortcuts import render
 from vsqx2ccs.settings import MEDIA_ROOT
 from .forms import UploadFileForm
 
-from ccs.from_vsqx3 import from_vsqx3
+from ccs.from_vsqx import from_vsqx
 
 
 # Create your views here.
@@ -27,7 +27,7 @@ def test(request):
             is_hiragana = bool(int(request.POST.get('is_hiragana')))
 
             # process file
-            from_vsqx3(file_name, tree, is_hiragana)
+            from_vsqx(file_name, tree, is_hiragana)
 
             # post process; make file name, path
             save_file_name = file_name.split('.')[0] + '.ccs'

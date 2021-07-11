@@ -1,6 +1,6 @@
 class BaseTick:
     def __init__(self):
-        self.vocaloid3_time_resolution = 480
+        self.vocaloid_time_resolution = 480
         self.cevio_time_resolution = 960
         # TODO: 어디 쓰이는지 확인 필요
         self.start_tick = 3840
@@ -10,4 +10,4 @@ class BaseTick:
 
     @property
     def difference(self):
-        return self.cevio_time_resolution / self.vocaloid3_time_resolution
+        return self.cevio_time_resolution / self.vocaloid_time_resolution
